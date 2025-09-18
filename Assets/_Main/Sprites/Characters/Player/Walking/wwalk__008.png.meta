@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 70b1d51f739a63048990b88f423bc6d0
+guid: 9d83e84c3b7294842997041c0410da9c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7329696821010760049
-    second: hook0_0
+      213: 4773174179813029969
+    second: wwalk__008_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 80
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -139,13 +139,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: hook0_0
+      name: wwalk__008_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 0
-        width: 44
-        height: 36
+        x: 5
+        y: 7
+        width: 85
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 17108af9c6058b560800000000000000
-      internalID: 7329696821010760049
+      spriteID: 15872de80a8bd3240800000000000000
+      internalID: 4773174179813029969
       vertices: []
       indices: 
       edges: []
@@ -174,7 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      hook0_0: 7329696821010760049
+      wwalk__008_0: 4773174179813029969
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
