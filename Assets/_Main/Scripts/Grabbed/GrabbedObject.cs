@@ -2,24 +2,29 @@ using UnityEngine;
 
 public class GrabbedObject : MonoBehaviour
 {
-    public IGrabbedObject clawGrabbed;
+    public IGrabbedObject grabbedObject;
 
     private void Awake()
     {
-        clawGrabbed = this.transform.Find("Hook").GetComponent<IGrabbedObject>();
+        grabbedObject = this.transform.Find("Claw").GetComponent<IGrabbedObject>();
     }
     void OnEnable()
     {
-        if (clawGrabbed != null) clawGrabbed.OnGrabbed += HandleGrabbed;
+        if (grabbedObject != null) grabbedObject.OnGrabbed += HandleGrabbed;
     }
    
     void OnDisable()
     {
-        if (clawGrabbed != null) clawGrabbed.OnGrabbed -= HandleGrabbed;
+        if (grabbedObject != null) grabbedObject.OnGrabbed -= HandleGrabbed;
     }
 
-    private void HandleGrabbed(GameObject gold)
+    private void HandleGrabbed(GameObject item)
     {
-        Debug.Log("GrabbedObject: " + gold.name);
+        if (item == null) return;
+        var hook = this.GetComponent<Hook>();
+        hook.Retracting();
+
+        var weight = item.GetComponent<ItemObject>().data.data.Weight;
+        hook.WeightObject(weight);
     }
 }

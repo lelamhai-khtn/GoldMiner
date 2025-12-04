@@ -1,12 +1,13 @@
+using System;
 using UnityEngine;
 
-public class Claw : MonoBehaviour
+public class Claw : MonoBehaviour, IGrabbedObject
 {
-    public IClawListener listener;
+    public event Action<GameObject> OnGrabbed;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        listener?.OnItemGrabbed(collision.gameObject);
+        OnGrabbed?.Invoke(collision.gameObject);
 
         collision.transform.parent = this.transform;
         collision.transform.localPosition = Vector2.zero;

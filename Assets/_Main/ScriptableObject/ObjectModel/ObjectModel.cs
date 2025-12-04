@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [System.Serializable]
-public class GoldModel
+public class ObjectModel
 {
     public int Id;
     public string Name;

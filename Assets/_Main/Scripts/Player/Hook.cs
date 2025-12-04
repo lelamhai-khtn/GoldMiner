@@ -1,39 +1,38 @@
-using System;
-using System.Diagnostics;
 using UnityEngine;
 
-public class Hook : MonoBehaviour, IHook, IGrabbedObject, IClawListener
+public class Hook : MonoBehaviour
 {
     public LineRenderer line;
     public Claw claw;
 
-    [Header("Swing")]
-    public float rotateSpeed = 80f;
-    public float minAngle = -70f;
-    public float maxAngle = 70f;
+    private float rotateSpeed = 80f;
+    private float minAngle = -70f;
+    private float maxAngle = 70f;
 
     [Header("Rope")]
     public float minLength = 1f;
     public float maxLength = 7f;
     public float speedDown = 6f;
-    public float speedUp = 8f;
+
+    [Header("Retract Speed vs Weight")]
+    public float baseSpeedUp = 8f;  
+    public float minSpeedUp = 1f;
+    public float heavyFactor = 0.25f;
 
     private float angle = 0f;
     private int dir = 1;
     private float length;
+    private float currentWeight = 0f;
+    
+    public enum State 
+    { 
+        Swing, Extending, Retracting 
+    }
 
-    private enum State { Swing, Extending, Retracting }
     private State state = State.Swing;
-
-    public event Action<GameObject> OnGrabbed;
-    public bool IsSwinging => state == State.Swing;
-    public bool IsExtending => state == State.Extending;
-    public bool IsRetracting => state == State.Retracting;
 
     private void Awake()
     {
-        claw.listener = this;
-
         line.positionCount = 2;
         line.useWorldSpace = false;
         length = minLength;
@@ -65,16 +64,18 @@ public class Hook : MonoBehaviour, IHook, IGrabbedObject, IClawListener
                 break;
 
             case State.Retracting:
-                length -= speedUp * Time.deltaTime;
+                float speedUpNow = GetRetractSpeed();
+                length -= speedUpNow * Time.deltaTime;
                 if (length <= minLength)
                 {
                     length = minLength;
                     state = State.Swing;
 
-                    if (claw.transform.childCount > 0)
+                    if (claw && claw.transform.childCount > 0)
                     {
                         Destroy(claw.transform.GetChild(0).gameObject);
                     }
+                    currentWeight = 0f;
                 }
                 break;
         }
@@ -90,29 +91,30 @@ public class Hook : MonoBehaviour, IHook, IGrabbedObject, IClawListener
         if (claw) claw.transform.localPosition = Vector3.down * length;
     }
 
-    public void OnItemGrabbed(GameObject gold)
+    float GetRetractSpeed()
     {
-        if (state == State.Extending)
-        {
-            var speed = gold.GetComponent<Gold>().data.data.Weight;
-            state = State.Retracting;
-
-            OnGrabbed?.Invoke(gold);
-        }
+        float denom = 1f + heavyFactor * Mathf.Max(0f, currentWeight);
+        return baseSpeedUp / denom;
     }
 
-    public void Swing()
+    public void WeightObject(float weight)
     {
-        state = State.Swing;
-    }
-
-    public void Extending()
-    {
-        state = State.Extending;
-    }
+        currentWeight = weight;
+    }    
 
     public void Retracting()
     {
-        state = State.Retracting;
+        if (state == State.Extending)
+        {
+            state = State.Retracting;
+        }
+    }
+
+    public void StartExtending()
+    {
+        if (state == State.Swing)
+        {
+            state = State.Extending;
+        }
     }
 }
