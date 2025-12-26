@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics;
 using UnityEngine;
 
 public class Hook : MonoBehaviour, IHook, IGrabbedObject, IClawListener
@@ -22,13 +21,11 @@ public class Hook : MonoBehaviour, IHook, IGrabbedObject, IClawListener
     private int dir = 1;
     private float length;
 
-    private enum State { Swing, Extending, Retracting }
-    private State state = State.Swing;
+    
 
     public event Action<GameObject> OnGrabbed;
-    public bool IsSwinging => state == State.Swing;
-    public bool IsExtending => state == State.Extending;
-    public bool IsRetracting => state == State.Retracting;
+
+    public HookState state { get; set; }
 
     private void Awake()
     {
@@ -49,27 +46,27 @@ public class Hook : MonoBehaviour, IHook, IGrabbedObject, IClawListener
     {
         switch (state)
         {
-            case State.Swing:
+            case HookState.Swing:
                 angle += dir * rotateSpeed * Time.deltaTime;
                 if (angle >= maxAngle) { angle = maxAngle; dir = -1; }
                 else if (angle <= minAngle) { angle = minAngle; dir = 1; }
                 break;
 
-            case State.Extending:
+            case HookState.Extending:
                 length += speedDown * Time.deltaTime;
                 if (length >= maxLength)
                 {
                     length = maxLength;
-                    state = State.Retracting;
+                    state = HookState.Retracting;
                 }
                 break;
 
-            case State.Retracting:
+            case HookState.Retracting:
                 length -= speedUp * Time.deltaTime;
                 if (length <= minLength)
                 {
                     length = minLength;
-                    state = State.Swing;
+                    state = HookState.Swing;
 
                     if (claw.transform.childCount > 0)
                     {
@@ -82,7 +79,7 @@ public class Hook : MonoBehaviour, IHook, IGrabbedObject, IClawListener
 
     void UpdateLineAndClaw()
     {
-        transform.rotation = Quaternion.Euler(0, 0, angle);
+        transform.rotation = Quaternion.Euler(0, 0, angle); 
 
         line.SetPosition(0, Vector3.zero);
         line.SetPosition(1, Vector3.down * (length - 0.1f));
@@ -90,29 +87,12 @@ public class Hook : MonoBehaviour, IHook, IGrabbedObject, IClawListener
         if (claw) claw.transform.localPosition = Vector3.down * length;
     }
 
-    public void OnItemGrabbed(GameObject gold)
+    public void OnItemGrabbed(GameObject go)
     {
-        if (state == State.Extending)
+        if (state == HookState.Extending)
         {
-            var speed = gold.GetComponent<Gold>().data.data.Weight;
-            state = State.Retracting;
-
-            OnGrabbed?.Invoke(gold);
+            state = HookState.Retracting;
+            OnGrabbed?.Invoke(go);
         }
-    }
-
-    public void Swing()
-    {
-        state = State.Swing;
-    }
-
-    public void Extending()
-    {
-        state = State.Extending;
-    }
-
-    public void Retracting()
-    {
-        state = State.Retracting;
     }
 }

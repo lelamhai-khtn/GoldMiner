@@ -1,12 +1,9 @@
-using UnityEngine;
-
 public interface IHook 
 {
-    bool IsSwinging { get; }
-    bool IsExtending { get; }
-    bool IsRetracting { get; }
+    HookState state { get; set; }
+}
 
-    void Swing();
-    void Extending();    
-    void Retracting();
+public enum HookState 
+{ 
+    Swing, Extending, Retracting 
 }

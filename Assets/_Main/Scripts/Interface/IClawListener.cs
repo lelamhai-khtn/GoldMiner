@@ -2,5 +2,5 @@ using UnityEngine;
 
 public interface IClawListener
 {
-    void OnItemGrabbed(GameObject gold);
+    void OnItemGrabbed(GameObject go);
 }
