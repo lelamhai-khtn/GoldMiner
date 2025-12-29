@@ -7,18 +7,17 @@ public class HookableItemConfig : ScriptableObject
 
     public Sprite sprite;
     public WeightType weightType;
-
-    [Tooltip("Giá trị vàng / điểm")]
     public int value;
-
-    [Tooltip("Hệ số nặng. Càng lớn kéo càng chậm")]
+    public bool canBePulled = true;
     public float weightFactor = 1f;
 
-    [Tooltip("Có thể kéo được hay không")]
-    public bool canBePulled = true;
-
-    [Header("Hiệu ứng")]
+    [Header("Sound")]
     public AudioClip grabSfx;
     public AudioClip draggingSfx;
     public AudioClip dropSfx;
+
+    private void OnValidate()
+    {
+        weightFactor = WeightTable.Factor[weightType];
+    }
 }

@@ -1,8 +1,9 @@
-using System;
+﻿using System;
 using UnityEngine;
 
 public class Hook : MonoBehaviour, IHook, IGrabbedObject, IClawListener
 {
+
     public LineRenderer line;
     public Claw claw;
 
@@ -15,16 +16,15 @@ public class Hook : MonoBehaviour, IHook, IGrabbedObject, IClawListener
     public float minLength = 1f;
     public float maxLength = 7f;
     public float speedDown = 6f;
-    public float speedUp = 8f;
+    public float defaultForce = 8f;
+    public float pullForce;
 
     private float angle = 0f;
     private int dir = 1;
     private float length;
 
-    
 
     public event Action<GameObject> OnGrabbed;
-
     public HookState state { get; set; }
 
     private void Awake()
@@ -34,6 +34,7 @@ public class Hook : MonoBehaviour, IHook, IGrabbedObject, IClawListener
         line.positionCount = 2;
         line.useWorldSpace = false;
         length = minLength;
+        pullForce = defaultForce;
     }
 
     private void Update()
@@ -62,12 +63,12 @@ public class Hook : MonoBehaviour, IHook, IGrabbedObject, IClawListener
                 break;
 
             case HookState.Retracting:
-                length -= speedUp * Time.deltaTime;
+                length -= pullForce * Time.deltaTime;
                 if (length <= minLength)
                 {
                     length = minLength;
                     state = HookState.Swing;
-
+                    pullForce = defaultForce;
                     if (claw.transform.childCount > 0)
                     {
                         Destroy(claw.transform.GetChild(0).gameObject);
@@ -91,6 +92,8 @@ public class Hook : MonoBehaviour, IHook, IGrabbedObject, IClawListener
     {
         if (state == HookState.Extending)
         {
+            float weightFactor = go.GetComponent<HookableItem>().config.weightFactor;
+            pullForce /= weightFactor;
             state = HookState.Retracting;
             OnGrabbed?.Invoke(go);
         }
