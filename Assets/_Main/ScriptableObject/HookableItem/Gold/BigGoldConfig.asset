@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: BigGold
   sprite: {fileID: 21300000, guid: 4830a222f201a784c8867f988ec0bd6b, type: 3}
-  weightType: 4
+  weightType: 3
   value: 50
   canBePulled: 1
   weightFactor: 5.3
