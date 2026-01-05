@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ba0b89384895d774dba2111cdd842190
+guid: 24115a48656d6a44c956718eb21fbce3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6416704506416456542
-    second: setting_0
+      213: 4475752669112601347
+    second: OVatPham1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: setting_0
+      name: OVatPham1_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 727
-        height: 755
+        x: 7
+        y: 7
+        width: 1723
+        height: 1722
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2ac1662af3943f6a0800000000000000
-      internalID: -6416704506416456542
+      spriteID: 30b86f8c6511d1e30800000000000000
+      internalID: 4475752669112601347
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      setting_0: -6416704506416456542
+      OVatPham1_0: 4475752669112601347
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

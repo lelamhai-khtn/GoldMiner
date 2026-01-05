@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: e4e57977e5ca3b14f890d0f9fb9b934a
+guid: 2e6480f052246dc478f605966bdbb0aa
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4248071294200044011
-    second: IconTien_0
+      213: -5729883703532931353
+    second: shop_diamond (3)_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -52,7 +52,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 796, y: 287, z: 214, w: 260}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,67 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: IconTien_0
+      name: shop_diamond (3)_0
       rect:
         serializedVersion: 2
-        x: 2
+        x: 0
         y: 0
-        width: 806
-        height: 774
+        width: 551
+        height: 189
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5162ca84aa1db05c0800000000000000
-      internalID: -4248071294200044011
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IconTien_1
-      rect:
-        serializedVersion: 2
-        x: 1626
-        y: 0
-        width: 219
-        height: 774
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7e069490ea164434e98a9b5cf705ba65
-      internalID: -2068557892
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IconTien_2
-      rect:
-        serializedVersion: 2
-        x: 808
-        y: 2
-        width: 817
-        height: 772
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 05bbcfb9af32aba44b9fd6380a8f0b77
-      internalID: 1727700222
+      spriteID: 7e6be9e312d5b70b0800000000000000
+      internalID: -5729883703532931353
       vertices: []
       indices: 
       edges: []
@@ -182,21 +138,17 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 7bcabec8daabbb94e98b7959f477fa53
-    internalID: -919513921
+    spriteID: 
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
-      IconTien_0: -4248071294200044011
-      IconTien_1: -2068557892
-      IconTien_2: 1727700222
+      shop_diamond (3)_0: -5729883703532931353
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
